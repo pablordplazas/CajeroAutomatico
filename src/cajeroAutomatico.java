@@ -1,31 +1,24 @@
-//necesito usar constructor vacio, con todos los metodos, tostring, metodo ingresar, metodo retirar
-//extreccion rapida "20% de el saldo" de debe validar si la cuenta tiene el dinero suficiente para
-//para realizar las intrucciones, metodos, consulta, saldo.
 public class cajeroAutomatico {
-
 
     private double numerodecuenta;
     private double ceduladelcliente;
-    private double Saldoactual;
+    private double saldoactual;
 
-    //Constructor vacio
-
-
+    // Constructor vacío
     public cajeroAutomatico() {
-
+        this.numerodecuenta = 0;
+        this.ceduladelcliente = 0;
+        this.saldoactual = 0;
     }
-    //Constructor con parametro
 
-
+    // Constructor con parámetros
     public cajeroAutomatico(double numerodecuenta, double ceduladelcliente, double saldoactual) {
-        this.numerodecuenta = 123456789;
-        this.ceduladelcliente = 1014271382;
-        Saldoactual = 100.000;
+        this.numerodecuenta = numerodecuenta;
+        this.ceduladelcliente = ceduladelcliente;
+        this.saldoactual = saldoactual;
     }
-    //Getter-Setter
 
-    //Get
-
+    // Getters
     public double getNumerodecuenta() {
         return numerodecuenta;
     }
@@ -35,12 +28,10 @@ public class cajeroAutomatico {
     }
 
     public double getSaldoactual() {
-        return Saldoactual;
+        return saldoactual;
     }
 
-    //Set
-
-
+    // Setters
     public void setNumerodecuenta(double numerodecuenta) {
         this.numerodecuenta = numerodecuenta;
     }
@@ -50,15 +41,52 @@ public class cajeroAutomatico {
     }
 
     public void setSaldoactual(double saldoactual) {
-        Saldoactual = saldoactual;
+        this.saldoactual = saldoactual;
     }
 
+    // Metodo Ingresar
+    public void ingresar(double monto) {
+        if (monto > 0) {
+            saldoactual += monto;
+            System.out.println("Ingreso exitoso. Nuevo saldo: " + saldoactual);
+        } else {
+            System.out.println("Monto inválido para ingresar.");
+        }
+    }
+
+    // Metodo Retira
+    public void retirar(double monto) {
+        if (monto > 0 && monto <= saldoactual) {
+            saldoactual -= monto;
+            System.out.println("Retiro exitoso. Nuevo saldo: " + saldoactual);
+        } else {
+            System.out.println("Fondos insuficientes o monto inválido.");
+        }
+    }
+
+    // Metodo Extraccion rapida
+    public void extraccionRapida() {
+        double monto = saldoactual * 0.20;
+        if (monto <= saldoactual) {
+            saldoactual -= monto;
+            System.out.println("Extracción rápida realizada. Monto: " + monto + ", Nuevo saldo: " + saldoactual);
+        } else {
+            System.out.println("No hay suficiente saldo para extracción rápida.");
+        }
+    }
+
+    // Metodo Consulta de el saldo
+    public void consultarSaldo() {
+        System.out.println("Saldo actual: " + saldoactual);
+    }
+
+    // toString
     @Override
     public String toString() {
         return "cajeroAutomatico{" +
                 "numerodecuenta=" + numerodecuenta +
                 ", ceduladelcliente=" + ceduladelcliente +
-                ", Saldoactual=" + Saldoactual +
+                ", saldoactual=" + saldoactual +
                 '}';
     }
 }
