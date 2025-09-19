@@ -56,6 +56,10 @@ public class cajeroAutomatico {
 
     // Metodo Retira
     public void retirar(double monto) {
+        if (saldoactual >= 10000) {
+            System.out.println("No se puede retirar: el saldo ha alcanzado el límite de 10000.");
+            return;
+        }
         if (monto > 0 && monto <= saldoactual) {
             saldoactual -= monto;
             System.out.println("Retiro exitoso. Nuevo saldo: " + saldoactual);
@@ -66,6 +70,10 @@ public class cajeroAutomatico {
 
     // Metodo Extraccion rapida
     public void extraccionRapida() {
+        if (saldoactual >= 10000) {
+            System.out.println("No se puede realizar extracción rápida: el saldo ha alcanzado el límite de 10000.");
+            return;
+        }
         double monto = saldoactual * 0.20;
         if (monto <= saldoactual) {
             saldoactual -= monto;
@@ -74,6 +82,7 @@ public class cajeroAutomatico {
             System.out.println("No hay suficiente saldo para extracción rápida.");
         }
     }
+
 
     // Metodo Consulta de el saldo
     public void consultarSaldo() {
